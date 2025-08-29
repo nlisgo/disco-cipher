@@ -283,6 +283,7 @@ body::before {
 .mode-controls {
   display: flex;
   justify-content: center;
+  border: none;
 }
 
 .toggle-label {
