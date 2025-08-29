@@ -507,16 +507,41 @@ body::before {
     font-size: 1rem;
   }
   
+  .output-textarea {
+    padding-right: 42px; /* Smaller padding for mobile */
+  }
+  
   .copy-btn {
     top: 8px;
     right: 8px;
     padding: 6px;
+    z-index: 15; /* Ensure it stays above text */
   }
   
   .copy-message {
     top: -30px;
     right: 8px;
     font-size: 0.8rem;
+  }
+}
+
+/* Additional mobile fixes for iOS Safari */
+@media screen and (max-width: 480px) {
+  .output-textarea {
+    padding-right: 44px !important; /* Force padding on small screens */
+  }
+  
+  .copy-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
   }
 }
 
@@ -530,6 +555,7 @@ body::before {
   background: rgba(0, 255, 128, 0.05);
   border-color: rgba(0, 255, 128, 0.2);
   flex: 1;
+  padding-right: 50px; /* Add space for copy button */
 }
 
 .output-textarea:focus {
