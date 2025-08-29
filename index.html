@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/disco-ball.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DiscoCipher ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1 class="title">
+          <span class="disco-ball">🪩</span>
+          DiscoCipher
+          <span class="disco-ball">🪩</span>
+        </h1>
+        <p class="subtitle">Transform your words with alphabetical groove!</p>
+      </header>
+
+      <main class="main">
+        <div class="cipher-container">
+          <div class="input-section">
+            <label for="input-text" class="label">
+              <span class="label-text">Original Text</span>
+              <span class="sparkle">✨</span>
+            </label>
+            <textarea 
+              id="input-text" 
+              class="textarea input-textarea"
+              placeholder="Type your message here... Try 'Hi, my name is Dave!'"
+              rows="6"
+            ></textarea>
+          </div>
+
+          <div class="transform-section">
+            <div class="mode-controls">
+              <label class="toggle-label">
+                <input type="checkbox" id="live-mode-toggle" class="toggle-checkbox" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Live Mode</span>
+                <span class="sparkle">⚡</span>
+              </label>
+            </div>
+            
+            <button id="transform-btn" class="transform-btn" disabled>
+              <span class="btn-text">Transform</span>
+              <span class="btn-icon">🕺</span>
+            </button>
+          </div>
+
+          <div class="output-section">
+            <label for="output-text" class="label">
+              <span class="label-text">DiscoCipher Result</span>
+              <span class="sparkle">💫</span>
+            </label>
+            <textarea 
+              id="output-text" 
+              class="textarea output-textarea"
+              placeholder="Your transformed text will appear here..."
+              rows="6"
+              readonly
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="example-section">
+          <h3 class="example-title">How it works:</h3>
+          <p class="example-text">
+            DiscoCipher sorts the letters in each word alphabetically while keeping punctuation and spaces in their original positions.
+          </p>
+          <div class="example">
+            <span class="example-before">"Hi, my name is Dave!"</span>
+            <span class="arrow">→</span>
+            <span class="example-after">"Hi, my aemn is aDev!"</span>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>Made with ✨ and disco vibes</p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
