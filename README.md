@@ -74,7 +74,7 @@ The project is configured for GitHub Pages deployment via GitHub Actions. When y
 
 1. Tests and linting run automatically
 2. If successful, the app builds and deploys to GitHub Pages
-3. Your site will be available at `https://yourusername.github.io/`
+3. Your site will be available at `https://yourusername.github.io/disco-cipher/`
 
 ## 🎨 Development
 
