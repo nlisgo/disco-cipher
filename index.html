@@ -56,13 +56,19 @@
               <span class="label-text">DiscoCipher Result</span>
               <span class="sparkle">💫</span>
             </label>
-            <textarea 
-              id="output-text" 
-              class="textarea output-textarea"
-              placeholder="Your transformed text will appear here..."
-              rows="6"
-              readonly
-            ></textarea>
+            <div class="textarea-container">
+              <textarea 
+                id="output-text" 
+                class="textarea output-textarea"
+                placeholder="Your transformed text will appear here..."
+                rows="6"
+                readonly
+              ></textarea>
+              <button id="copy-btn" class="copy-btn" title="Copy to clipboard">
+                <span class="copy-icon">📋</span>
+              </button>
+              <div id="copy-message" class="copy-message">Copied!</div>
+            </div>
           </div>
         </div>
 

@@ -20,10 +20,12 @@ export default [
         window: 'readonly',
         console: 'readonly',
         setTimeout: 'readonly',
+        navigator: 'readonly',
         HTMLElement: 'readonly',
         HTMLTextAreaElement: 'readonly',
         HTMLButtonElement: 'readonly',
         HTMLInputElement: 'readonly',
+        HTMLDivElement: 'readonly',
         MutationObserver: 'readonly',
         fetch: 'readonly'
       }

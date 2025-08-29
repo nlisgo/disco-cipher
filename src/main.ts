@@ -6,6 +6,8 @@ class DiscoCipherApp {
   private outputTextArea: HTMLTextAreaElement;
   private transformBtn: HTMLButtonElement;
   private liveModeToggle: HTMLInputElement;
+  private copyBtn: HTMLButtonElement;
+  private copyMessage: HTMLDivElement;
   private isLiveMode: boolean = true;
 
   constructor() {
@@ -13,6 +15,8 @@ class DiscoCipherApp {
     this.outputTextArea = document.getElementById('output-text') as HTMLTextAreaElement;
     this.transformBtn = document.getElementById('transform-btn') as HTMLButtonElement;
     this.liveModeToggle = document.getElementById('live-mode-toggle') as HTMLInputElement;
+    this.copyBtn = document.getElementById('copy-btn') as HTMLButtonElement;
+    this.copyMessage = document.getElementById('copy-message') as HTMLDivElement;
 
     this.initializeEventListeners();
     this.updateButtonState();
@@ -24,6 +28,8 @@ class DiscoCipherApp {
     this.inputTextArea.addEventListener('input', () => this.handleInputChange());
     
     this.liveModeToggle.addEventListener('change', () => this.handleModeToggle());
+    
+    this.copyBtn.addEventListener('click', () => this.handleCopyToClipboard());
     
     this.inputTextArea.addEventListener('keydown', (event) => {
       if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
@@ -132,6 +138,41 @@ class DiscoCipherApp {
     this.outputTextArea.value = '';
     this.inputTextArea.focus();
     this.updateButtonState();
+  }
+
+  private async handleCopyToClipboard(): Promise<void> {
+    const outputText = this.outputTextArea.value.trim();
+    
+    if (!outputText) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(outputText);
+      this.showCopySuccess();
+    } catch (error) {
+      this.fallbackCopyToClipboard();
+    }
+  }
+
+  private fallbackCopyToClipboard(): void {
+    this.outputTextArea.select();
+    this.outputTextArea.setSelectionRange(0, 99999);
+    
+    try {
+      document.execCommand('copy');
+      this.showCopySuccess();
+    } catch (error) {
+      console.error('Failed to copy text to clipboard:', error);
+    }
+  }
+
+  private showCopySuccess(): void {
+    this.copyMessage.classList.add('show');
+    
+    setTimeout(() => {
+      this.copyMessage.classList.remove('show');
+    }, 2000);
   }
 }
 
