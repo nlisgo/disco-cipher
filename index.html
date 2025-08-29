@@ -4,61 +4,101 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/disco-ball.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DiscoCipher ✨</title>
+    <title>DiscoCipher - Accessible Text Transformation Tool</title>
+    <meta name="description" content="Transform your text by sorting letters in each word alphabetically while preserving punctuation and spacing. Fully accessible disco-themed web application.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="app">
-      <header class="header">
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Screen reader announcements and Easter egg -->
+    <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+    <div id="sr-easter-egg" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
+    
+    <div id="app" role="application" aria-label="DiscoCipher Text Transformation Tool">
+      <header class="header" role="banner">
         <h1 class="title">
-          <span class="disco-ball">🪩</span>
+          <span class="disco-ball" aria-hidden="true">🪩</span>
           DiscoCipher
-          <span class="disco-ball">🪩</span>
+          <span class="disco-ball" aria-hidden="true">🪩</span>
         </h1>
         <p class="subtitle">Transform your words with alphabetical groove!</p>
       </header>
 
-      <main class="main">
-        <div class="cipher-container">
+      <main id="main-content" class="main" role="main">
+        <section class="cipher-container" 
+                 aria-labelledby="cipher-heading" 
+                 aria-describedby="cipher-description">
+          
+          <h2 id="cipher-heading" class="sr-only">Text Transformation Tool</h2>
+          <p id="cipher-description" class="sr-only">
+            Enter text in the input field below. DiscoCipher will sort the letters in each word alphabetically 
+            while preserving punctuation and spacing. The transformed result will appear in the output field.
+          </p>
           <div class="input-section">
             <label for="input-text" class="label">
               <span class="label-text">Original Text</span>
-              <span class="sparkle">✨</span>
+              <span class="sparkle" aria-hidden="true">✨</span>
             </label>
             <textarea 
               id="input-text" 
               class="textarea input-textarea"
               placeholder="Type your message here... Try 'Hi, my name is Dave!'"
               rows="6"
+              aria-describedby="input-help input-caption"
+              aria-label="Enter text to transform"
+              spellcheck="false"
             ></textarea>
-            <div class="input-caption">
-              <span class="caption-text">✨ Start typing to see the magic happen below! ✨</span>
-              <span id="mobile-hint" class="mobile-hint">👇 Check your result below 👇</span>
+            <div id="input-help" class="sr-only">
+              Type or paste text here. As you type, the letters in each word will be sorted alphabetically 
+              while punctuation and spacing remain unchanged.
+            </div>
+            <div id="input-caption" class="input-caption" aria-live="polite">
+              <span class="caption-text">Start typing to see the magic happen below!</span>
+              <span id="mobile-hint" class="mobile-hint" aria-hidden="true">👇 Check your result below 👇</span>
             </div>
           </div>
 
           <div class="transform-section">
-            <div class="mode-controls">
+            <fieldset class="mode-controls" aria-describedby="mode-help">
+              <legend class="sr-only">Transformation Mode</legend>
               <label class="toggle-label">
-                <input type="checkbox" id="live-mode-toggle" class="toggle-checkbox" checked>
-                <span class="toggle-slider"></span>
+                <input type="checkbox" 
+                       id="live-mode-toggle" 
+                       class="toggle-checkbox" 
+                       checked
+                       aria-describedby="mode-help">
+                <span class="toggle-slider" aria-hidden="true"></span>
                 <span class="toggle-text">Live Mode</span>
-                <span class="sparkle">⚡</span>
+                <span class="sparkle" aria-hidden="true">⚡</span>
               </label>
-            </div>
+              <div id="mode-help" class="sr-only">
+                When live mode is enabled, text transforms automatically as you type. 
+                When disabled, click the Transform button to apply changes.
+              </div>
+            </fieldset>
             
-            <button id="transform-btn" class="transform-btn" disabled>
+            <button id="transform-btn" 
+                    class="transform-btn" 
+                    disabled
+                    aria-describedby="transform-help"
+                    aria-keyshortcuts="Ctrl+Enter">
               <span class="btn-text">Transform</span>
-              <span class="btn-icon">🕺</span>
+              <span class="btn-icon" aria-hidden="true">🕺</span>
             </button>
+            <div id="transform-help" class="sr-only">
+              Manually transform the input text. This button is only active in manual mode 
+              when the input differs from the current output. Keyboard shortcut: Ctrl+Enter.
+            </div>
           </div>
 
           <div class="output-section">
             <label for="output-text" class="label">
               <span class="label-text">DiscoCipher Result</span>
-              <span class="sparkle">💫</span>
+              <span class="sparkle" aria-hidden="true">💫</span>
             </label>
             <div class="textarea-container">
               <textarea 
@@ -67,26 +107,47 @@
                 placeholder="Your transformed text will appear here..."
                 rows="6"
                 readonly
+                aria-label="Transformed text result"
+                aria-describedby="output-help"
+                aria-live="polite"
+                aria-atomic="true"
               ></textarea>
-              <button id="copy-btn" class="copy-btn" title="Copy to clipboard">
-                <span class="copy-icon">📋</span>
+              <div id="output-help" class="sr-only">
+                The transformed text appears here. Each word has its letters sorted alphabetically 
+                while preserving original punctuation and spacing.
+              </div>
+              <button id="copy-btn" 
+                      class="copy-btn" 
+                      aria-label="Copy transformed text to clipboard"
+                      aria-describedby="copy-help">
+                <span class="copy-icon" aria-hidden="true">📋</span>
               </button>
-              <div id="copy-message" class="copy-message">Copied!</div>
+              <div id="copy-help" class="sr-only">
+                Copy the transformed text to your clipboard for use in other applications.
+              </div>
+              <div id="copy-message" 
+                   class="copy-message" 
+                   role="status" 
+                   aria-live="assertive" 
+                   aria-atomic="true">
+                Copied!
+              </div>
             </div>
           </div>
+        </section>
         </div>
 
-        <div class="example-section">
-          <h3 class="example-title">How it works:</h3>
+        <section class="example-section" aria-labelledby="example-heading">
+          <h3 id="example-heading" class="example-title">How it works:</h3>
           <p class="example-text">
             DiscoCipher sorts the letters in each word alphabetically while keeping punctuation and spaces in their original positions.
           </p>
-          <div class="example">
+          <div class="example" role="img" aria-label="Example transformation: Hi, my name is Dave! becomes Hi, my aemn is aDev!">
             <span class="example-before">"Hi, my name is Dave!"</span>
-            <span class="arrow">→</span>
+            <span class="arrow" aria-hidden="true">→</span>
             <span class="example-after">"Hi, my aemn is aDev!"</span>
           </div>
-        </div>
+        </section>
       </main>
 
       <footer class="footer">
