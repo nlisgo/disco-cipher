@@ -97,4 +97,20 @@ describe('DiscoCipher', () => {
       expect(discoCipher('Hello, world! How are you?')).toBe('eHllo, dlorw! How aer ouy?');
     });
   });
+
+  describe('multiline input', () => {
+    it('should handle text with newline characters', () => {
+      expect(discoCipher('hello\nworld')).toBe('ehllo\ndlorw');
+    });
+
+    it('should handle multiple lines with various content', () => {
+      const input = 'First line\nSecond line!\nThird line?';
+      const expected = 'First eiln\ncdenoS eiln!\ndhirT eiln?';
+      expect(discoCipher(input)).toBe(expected);
+    });
+
+    it('should handle empty lines in multiline text', () => {
+      expect(discoCipher('hello\n\nworld')).toBe('ehllo\n\ndlorw');
+    });
+  });
 });

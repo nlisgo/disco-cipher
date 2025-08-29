@@ -1,8 +1,12 @@
 export function discoCipher(input: string): string {
   return input
-    .split(' ')
-    .map(word => sortCharactersInWord(word))
-    .join(' ');
+    .split('\n')
+    .map(line => line
+      .split(' ')
+      .map(word => sortCharactersInWord(word))
+      .join(' ')
+    )
+    .join('\n');
 }
 
 function sortCharactersInWord(word: string): string {
