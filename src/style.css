@@ -527,11 +527,11 @@ body::before {
 
 /* Additional mobile fixes for iOS Safari */
 @media screen and (max-width: 480px) {
-  .output-textarea {
-    padding-right: 44px !important; /* Force padding on small screens */
+  .textarea-container .output-textarea {
+    padding-right: 44px; /* More specific selector instead of !important */
   }
   
-  .copy-btn {
+  .textarea-container .copy-btn {
     position: absolute;
     top: 6px;
     right: 6px;
