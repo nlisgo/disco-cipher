@@ -26,6 +26,7 @@ export default [
         HTMLButtonElement: 'readonly',
         HTMLInputElement: 'readonly',
         HTMLDivElement: 'readonly',
+        HTMLSpanElement: 'readonly',
         MutationObserver: 'readonly',
         fetch: 'readonly'
       }

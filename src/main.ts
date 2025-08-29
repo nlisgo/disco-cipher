@@ -8,7 +8,10 @@ class DiscoCipherApp {
   private liveModeToggle: HTMLInputElement;
   private copyBtn: HTMLButtonElement;
   private copyMessage: HTMLDivElement;
+  private mobileHint: HTMLSpanElement;
+  private outputSection: HTMLDivElement;
   private isLiveMode: boolean = true;
+  private isMobile: boolean;
 
   constructor() {
     this.inputTextArea = document.getElementById('input-text') as HTMLTextAreaElement;
@@ -17,6 +20,10 @@ class DiscoCipherApp {
     this.liveModeToggle = document.getElementById('live-mode-toggle') as HTMLInputElement;
     this.copyBtn = document.getElementById('copy-btn') as HTMLButtonElement;
     this.copyMessage = document.getElementById('copy-message') as HTMLDivElement;
+    this.mobileHint = document.getElementById('mobile-hint') as HTMLSpanElement;
+    this.outputSection = document.querySelector('.output-section') as HTMLDivElement;
+    
+    this.isMobile = window.innerWidth <= 768;
 
     this.initializeEventListeners();
     this.updateButtonState();
@@ -42,6 +49,10 @@ class DiscoCipherApp {
         this.clearAll();
       }
     });
+
+    window.addEventListener('resize', () => {
+      this.isMobile = window.innerWidth <= 768;
+    });
   }
 
   private handleTransform(): void {
@@ -58,6 +69,9 @@ class DiscoCipherApp {
       const result = discoCipher(inputText);
       this.outputTextArea.value = result;
       this.showSuccessFeedback();
+      this.showMobileGuidance();
+      this.highlightResult();
+      this.scrollToResult();
       this.updateButtonState();
     }, 300);
   }
@@ -85,8 +99,11 @@ class DiscoCipherApp {
     if (inputText.trim()) {
       const result = discoCipher(inputText);
       this.outputTextArea.value = result;
+      this.showMobileGuidance();
+      this.highlightResult();
     } else {
       this.outputTextArea.value = '';
+      this.hideMobileGuidance();
     }
   }
 
@@ -173,6 +190,36 @@ class DiscoCipherApp {
     setTimeout(() => {
       this.copyMessage.classList.remove('show');
     }, 2000);
+  }
+
+  private showMobileGuidance(): void {
+    if (this.isMobile && this.outputTextArea.value.trim()) {
+      this.mobileHint.classList.add('show');
+    }
+  }
+
+  private hideMobileGuidance(): void {
+    this.mobileHint.classList.remove('show');
+  }
+
+  private highlightResult(): void {
+    if (this.outputTextArea.value.trim()) {
+      this.outputSection.classList.add('highlight');
+      setTimeout(() => {
+        this.outputSection.classList.remove('highlight');
+      }, 1500);
+    }
+  }
+
+  private scrollToResult(): void {
+    if (this.isMobile && this.outputTextArea.value.trim()) {
+      setTimeout(() => {
+        this.outputSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 400);
+    }
   }
 }
 

@@ -127,9 +127,55 @@ body::before {
   animation: gradientShift 5s ease-in-out infinite alternate;
 }
 
-.input-section,
+.input-section {
+  margin-bottom: 2rem;
+}
+
 .output-section {
   margin-bottom: 2rem;
+  scroll-margin-top: 2rem;
+}
+
+.output-section.highlight {
+  animation: resultHighlight 1.5s ease-out;
+}
+
+@keyframes resultHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 255, 128, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 20px rgba(0, 255, 128, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 255, 128, 0);
+  }
+}
+
+.input-caption {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.caption-text {
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-hint {
+  color: var(--accent-gold);
+  font-weight: 600;
+  display: none;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.mobile-hint.show {
+  display: block;
 }
 
 .label {
@@ -383,12 +429,46 @@ body::before {
     padding: 1.5rem;
   }
   
+  .input-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .output-section {
+    margin-bottom: 1.5rem;
+    scroll-margin-top: 1rem;
+  }
+  
+  .transform-section {
+    margin: 1.5rem 0;
+  }
+  
+  .mobile-hint.show {
+    display: block;
+    animation: bounce 2s ease-in-out infinite, pulse 3s ease-in-out infinite;
+  }
+  
   .example {
     flex-direction: column;
   }
   
   .arrow {
     transform: rotate(90deg);
+  }
+  
+  .textarea {
+    font-size: 1rem;
+  }
+  
+  .copy-btn {
+    top: 8px;
+    right: 8px;
+    padding: 6px;
+  }
+  
+  .copy-message {
+    top: -30px;
+    right: 8px;
+    font-size: 0.8rem;
   }
 }
 
