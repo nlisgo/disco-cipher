@@ -18,7 +18,7 @@
     <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
     <div id="sr-easter-egg" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
     
-    <div id="app" role="application" aria-label="DiscoCipher Text Transformation Tool">
+    <div id="app">
       <header class="header" role="banner">
         <h1 class="title">
           <span class="disco-ball" aria-hidden="true">🪩</span>
@@ -30,8 +30,10 @@
 
       <main id="main-content" class="main" role="main">
         <section class="cipher-container" 
+                 role="application"
                  aria-labelledby="cipher-heading" 
-                 aria-describedby="cipher-description">
+                 aria-describedby="cipher-description"
+                 aria-label="DiscoCipher Text Transformation Tool">
           
           <h2 id="cipher-heading" class="sr-only">Text Transformation Tool</h2>
           <p id="cipher-description" class="sr-only">
